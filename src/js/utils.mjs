@@ -15,7 +15,7 @@ export function getLocalStorage(key) {
       // Ensure the returned data is an array, even if it's a single object
       return Array.isArray(parsedData) ? parsedData : [parsedData];
     } catch (e) {
-      return "Parsing Error"
+      return 'Parsing Error'
     }
   }
   return []; // Return empty array if nothing is in localStorage
@@ -28,9 +28,19 @@ export function setLocalStorage(key, data) {
 
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
-  qs(selector).addEventListener("touchend", (event) => {
+  qs(selector).addEventListener('touchend', (event) => {
     event.preventDefault();
     callback();
   });
-  qs(selector).addEventListener("click", callback);
+  qs(selector).addEventListener('click', callback);
+}
+
+
+export function getParam(param){
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const product = urlParams.get({param});
+  console.log('You made it');
+  
+  return product
 }
