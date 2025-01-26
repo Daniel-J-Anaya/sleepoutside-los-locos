@@ -16,6 +16,12 @@ export function productDetails(productId, selector) {
         // add a listener to Add to Cart button
         let button = document.querySelector('#addToCart')
         button.addEventListener('click', addProductToCart(product))
+
+        // trigger cart animation
+        const backpack = document.querySelector('.cart svg');
+        button.addEventListener('click', () => {
+            backpack.classList.add('animation');
+        });
         }
     )
     
@@ -40,7 +46,7 @@ function productDetailsTemplate(product){
 
     <p class="product-card__price" id="productFinalPrice">${product.FinalPrice}</p>
 
-    <p class="product__color" id="productColorName">${product.Colors[1].ColorName}</p>
+    <p class="product__color" id="productColorName">${product.Colors}</p>
 
     <p class="product__description" id="productDescriptionHtmlSimple">${product.DescriptionHtmlSimple}</p>
 
