@@ -58,7 +58,7 @@ function addProductToCart(product) {
   
     // If cart is not an array (i.e., a single product), make it an array
     if (!Array.isArray(cart)) {
-      cart = [];
+        cart = cart ? [cart] : [];
     }
   
     // Add the new product to the cart array
