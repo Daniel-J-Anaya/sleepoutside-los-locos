@@ -1,9 +1,18 @@
-import { getLocalStorage } from './utils.mjs';
+import { getLocalStorage, setLocalStorage } from './utils.mjs';
 
 function renderCartContents() {
   const cartItems = getLocalStorage('so-cart');
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector('.product-list').innerHTML = htmlItems.join('');
+  const deleteButtons = document.querySelectorAll('#removeButton')
+  let count = 0 
+  deleteButtons.forEach((element)=>{
+    count += 1
+    let index = count
+    element.addEventListener('click', () =>{
+      deleteItemFromCart(index - 1)
+    })
+  })
 }
 
 function cartItemTemplate(item) {
@@ -22,9 +31,19 @@ function cartItemTemplate(item) {
   <p class="cart-card__quantity">qty: 1</p>
   <p class="product-suggested-retail__price">$${item.SuggestedRetailPrice}</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
+  <a href="#" id="removeButton" > Remove Item</a>
 </li>`;
 
   return newItem;
+}
+
+function deleteItemFromCart(index){
+  
+  const cartItems = getLocalStorage('so-cart');
+  cartItems.splice(index, 1)
+  setLocalStorage('so-cart', cartItems);
+  renderCartContents()
+  
 }
 
 renderCartContents();
