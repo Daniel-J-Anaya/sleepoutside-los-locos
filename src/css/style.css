@@ -110,6 +110,36 @@ button {
   fill: gray;
 }
 
+.animation{
+  animation: rock 1s ease-in-out;
+}
+@keyframes grow{
+  0% {transform: scale(1);}
+  25% {transform: scale(1.5);}
+  50% {transform: scale(2);}
+  75% {transform: scale(1.5);}
+  100% {transform: scale(1);}
+}
+
+@keyframes rock {
+  0%{
+      transform: rotate(-45deg);
+  }
+  50%{
+      transform: rotate(45deg);
+  }
+  100%{
+      transform: rotate(-45deg);
+  }
+  150%{
+      transform: rotate(45deg);
+  }
+  200%{
+      transform: rotate(-45deg);
+  }
+  
+}
+
 /* End cart icon styles */
 
 .mission {
