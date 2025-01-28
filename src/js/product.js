@@ -28,3 +28,11 @@ async function addToCartHandler(e) {
 document
   .getElementById('addToCart')
   .addEventListener('click', addToCartHandler);
+
+// function showRetailPrice(item){
+//   const priceElement = document.querySelector('.product-suggested-retail__price');
+//   const product = findProductById(item.target.dataset.id);
+//   priceElement.textContent = `${product.SuggestedRetailPrice}`;
+// }
+
+// showRetailPrice();
