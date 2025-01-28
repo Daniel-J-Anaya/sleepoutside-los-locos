@@ -36,7 +36,7 @@ function productDetailsTemplate(product){
         alt="${product.Name}"
     />
 
-    <p class="product-suggested-retail__price" id="productSuggestedRetailPrice">$${product.SuggestedRetailPrice}.00</p>
+    <p class="product-suggested-retail__price" id="productSuggestedRetailPrice">$${product.SuggestedRetailPrice}</p>
 
     <p class="product-card__price" id="productFinalPrice">${product.FinalPrice}</p>
 
