@@ -1,12 +1,17 @@
-import { getLocalStorage } from './utils.mjs';
+import { getLocalStorage, setLocalStorage } from './utils.mjs';
 
 function renderCartContents() {
   const cartItems = getLocalStorage('so-cart');
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector('.product-list').innerHTML = htmlItems.join('');
   const deleteButtons = document.querySelectorAll('#removeButton')
+  let count = 0 
   deleteButtons.forEach((element)=>{
-    element.addEventListener('click', console.log(element))//deleteItemFromCart)
+    count += 1
+    let index = count
+    element.addEventListener('click', () =>{
+      deleteItemFromCart(index - 1)
+    })
   })
 }
 
@@ -30,9 +35,13 @@ function cartItemTemplate(item) {
   return newItem;
 }
 
-function deleteItemFromCart(){
+function deleteItemFromCart(index){
+  
   const cartItems = getLocalStorage('so-cart');
-  console.log(cartItems)
+  cartItems.splice(index, 1)
+  setLocalStorage('so-cart', cartItems);
+  renderCartContents()
+  
 }
 
 renderCartContents();
