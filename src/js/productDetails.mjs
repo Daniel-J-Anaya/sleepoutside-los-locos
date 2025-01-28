@@ -1,7 +1,7 @@
 import { getLocalStorage, setLocalStorage } from './utils.mjs';
 import { findProductById } from './productData.mjs';
 
-let product = {};
+// let product = {};
 
 export async function productDetails(productId, selector) {
     // use findProductById to get the details for the current product. findProductById will return a promise! use await or .then() to process it
@@ -35,6 +35,8 @@ function productDetailsTemplate(product){
         src="${product.Image}"
         alt="${product.Name}"
     />
+
+    <p class="product-suggested-retail__price" id="productSuggestedRetailPrice">$${product.SuggestedRetailPrice}.00</p>
 
     <p class="product-card__price" id="productFinalPrice">${product.FinalPrice}</p>
 
