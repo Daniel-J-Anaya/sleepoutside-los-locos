@@ -29,8 +29,8 @@ async function addToCartHandler(e) {
 
 // add listener to Add to Cart button
 document
-  .getElementById('addToCart')
-  .addEventListener('click', addToCartHandler);
+  setTimeout(1000, ()=>{document.getElementById('addToCart')
+  .addEventListener('click', addToCartHandler)});
 
 
 getParam('product')
