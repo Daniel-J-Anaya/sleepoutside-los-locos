@@ -1,15 +1,20 @@
-import { setLocalStorage, getLocalStorage } from './utils.mjs';
+import { setLocalStorage } from './utils.mjs';
+import { getLocalStorage } from './utils.mjs';
 import { findProductById } from './productData.mjs';
 
 function addProductToCart(product) {
+  // Retrieve the existing cart from localStorage
   let cart = getLocalStorage('so-cart');
 
+  // If cart is not an array (i.e., a single product), make it an array
   if (!Array.isArray(cart)) {
-    cart = [];
+    cart = cart ? [cart] : [];
   }
 
+  // Add the new product to the cart array
   cart.push(product);
 
+  // Save the updated cart back to localStorage
   setLocalStorage('so-cart', cart);
 }
 
