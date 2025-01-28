@@ -5,6 +5,25 @@ let product = {};
 
 export async function productDetails(productId, selector) {
     // use findProductById to get the details for the current product. findProductById will return a promise! use await or .then() to process it
+    let product =  findProductById(productId).then(() =>{
+        // once we have the product details we can render out the HTML
+        console.log('Bello');
+        let productHTML = productDetailsTemplate(product)
+        let container = document.querySelector(selector)
+    
+        container.insertAdjacentHTML('afterbegin', productHTML)
+    
+        // add a listener to Add to Cart button
+        let button = document.querySelector('#addToCart')
+        button.addEventListener('click', addProductToCart(product))
+
+        // trigger cart animation
+        const backpack = document.querySelector('.cart svg');
+        button.addEventListener('click', () => {
+            backpack.classList.add('animation');
+        });
+        }
+    )
     let product =  await findProductById(productId);
     // once we have the product details we can render out the HTML
     console.log(product);
@@ -38,7 +57,7 @@ function productDetailsTemplate(product){
 
     <p class="product-card__price" id="productFinalPrice">${product.FinalPrice}</p>
 
-    <p class="product__color" id="productColorName">${product.ColorsName}</p>
+    <p class="product__color" id="productColorName">${product.Colors}</p>
 
     <p class="product__description" id="productDescriptionHtmlSimple">${product.DescriptionHtmlSimple}</p>
 
