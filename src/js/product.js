@@ -4,15 +4,12 @@ import { findProductById } from './productData.mjs';
 function addProductToCart(product) {
   let cart = getLocalStorage('so-cart');
 
-  // If cart is not an array, initialize it as an empty array
   if (!Array.isArray(cart)) {
     cart = [];
   }
 
-  // Add the new product to the cart
   cart.push(product);
 
-  // Save the updated cart back to local storage
   setLocalStorage('so-cart', cart);
 }
 
