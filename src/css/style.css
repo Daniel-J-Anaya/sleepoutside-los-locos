@@ -91,6 +91,12 @@ button {
   font-size: var(--large-font);
   cursor: pointer;
 }
+button:hover {
+  filter: brightness(85%);
+}
+button:active {
+  scale: .9;
+}
 .divider {
   border-bottom: 2px solid var(--primary-color);
 }
