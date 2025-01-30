@@ -16,6 +16,15 @@ export async function productDetails(productId, selector) {
     // add a listener to Add to Cart button
     let button = document.querySelector('#addToCart')
     button.addEventListener('click', addProductToCart(product))
+
+    // trigger animation
+    const anim = document.querySelector('.cart svg');
+    button.addEventListener('click', () => {
+        anim.classList.add('animation');
+        setTimeout(() => {
+            anim.classList.remove('animation');
+        }, 1000);
+    })
     
 }
    
