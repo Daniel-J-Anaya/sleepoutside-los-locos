@@ -61,6 +61,8 @@ function productDetailsTemplate(product){
 }
 
 
+
+
 function addProductToCart(product) {
     // Retrieve the existing cart from localStorage
     let cart = getLocalStorage('so-cart');
