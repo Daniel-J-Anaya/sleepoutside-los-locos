@@ -110,6 +110,27 @@ button {
   fill: gray;
 }
 
+.cart-count{
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  font-size: var(--small-font);
+  font-weight: bold;
+  color: var(--dark-grey);
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hidden {
+  display: none;
+}
+
 .animation{
   animation: rock 1s ease-in-out;
 }

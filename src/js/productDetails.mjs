@@ -26,6 +26,18 @@ export async function productDetails(productId, selector) {
         }, 1000);
     })
     
+    // cart count indicator
+    const cartCount = document.querySelector('.cart p');
+    const cartItems = getLocalStorage('so-cart');
+    const count = cartItems.length;
+    button.addEventListener('click', () => {
+        if (count > 0) {
+            cartCount.classList.remove('hidden');
+            cartCount.insertAdjacentHTML('afterbegin', count);
+        }
+
+
+    })
 }
    
 
