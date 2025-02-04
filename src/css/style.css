@@ -30,6 +30,21 @@ header {
   justify-content: space-between;
   padding: 0 10px;
 }
+.alert-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.alert-list p {
+  margin: 2% auto;
+  padding: 3%;
+  font-size: 16px;
+  text-align: center;
+}
 .logo {
   line-height: 60px;
   width: 245px;
@@ -90,6 +105,12 @@ button {
   border: 0;
   font-size: var(--large-font);
   cursor: pointer;
+}
+button:hover {
+  filter: brightness(85%);
+}
+button:active {
+  scale: .9;
 }
 .divider {
   border-bottom: 2px solid var(--primary-color);
