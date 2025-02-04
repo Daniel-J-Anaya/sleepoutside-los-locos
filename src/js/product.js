@@ -1,6 +1,7 @@
 import { setLocalStorage, getLocalStorage, getParam} from './utils.mjs';
 import { findProductById } from './productData.mjs';
 import { productDetails } from './productDetails.mjs';
+import { loadAlerts } from './alert.js';
 
 const productId = getParam('product');
 productDetails(productId, '.product-detail');
@@ -33,5 +34,6 @@ setTimeout(1000, () => {document
   .addEventListener('click', addToCartHandler)});
 
 
-getParam('product')
+getParam('product');
 
+loadAlerts();
