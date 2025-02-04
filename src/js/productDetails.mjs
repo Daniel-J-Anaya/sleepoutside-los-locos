@@ -27,15 +27,20 @@ export async function productDetails(productId, selector) {
     })
     
     // cart count indicator
-    const cartCount = document.querySelector('.cart p');
+    const cartCount = document.querySelector('.cart-count');
     const cartItems = getLocalStorage('so-cart');
     const count = cartItems.length;
+    console.log(count);
     button.addEventListener('click', () => {
-        if (count > 0) {
+        if (count == 1) {
             cartCount.classList.remove('hidden');
             cartCount.insertAdjacentHTML('afterbegin', count);
+            console.log("showing");
         }
-
+        else if (count > 1) {
+            cartCount.insertAdjacentHTML('afterbegin', count);
+            console.log("showing updated");
+        }
 
     })
 }
