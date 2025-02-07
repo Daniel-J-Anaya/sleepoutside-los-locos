@@ -5,27 +5,34 @@ import { findProductById } from './productData.mjs';
 
 export async function productDetails(productId, selector) {
     // use findProductById to get the details for the current product. findProductById will return a promise! use await or .then() to process it
-    let product =  await findProductById(productId);
-    // once we have the product details we can render out the HTML
-    console.log(product);
-    let productHTML = productDetailsTemplate(product);
-    let container = document.querySelector(selector);
+    try{
+        let product =  await findProductById(productId);
+        // once we have the product details we can render out the HTML
+        let productHTML = productDetailsTemplate(product);
+        let container = document.querySelector(selector);
 
-    container.insertAdjacentHTML('afterbegin', productHTML);
+        container.insertAdjacentHTML('afterbegin', productHTML);
 
-    // add a listener to Add to Cart button
-    let button = document.querySelector('#addToCart')
-    button.addEventListener('click', addProductToCart(product))
+        // add a listener to Add to Cart button
+        let button = document.querySelector('#addToCart')
+        button.addEventListener('click', addProductToCart(product))
 
-    // trigger animation
-    const anim = document.querySelector('.cart svg');
-    button.addEventListener('click', () => {
-        anim.classList.add('animation');
-        setTimeout(() => {
-            anim.classList.remove('animation');
-        }, 1000);
-    })
-    
+        // trigger animation
+        const anim = document.querySelector('.cart svg');
+        button.addEventListener('click', () => {
+            anim.classList.add('animation');
+            setTimeout(() => {
+                anim.classList.remove('animation');
+            }, 1000);
+        })
+    }
+    catch (error){
+        console.log('Product not found')
+        let errorHTML = errorTemplate()
+        let container = document.querySelector(selector);
+
+        container.insertAdjacentHTML('afterbegin', errorHTML);
+    }
 }
    
 
@@ -78,3 +85,13 @@ function addProductToCart(product) {
     // Save the updated cart back to localStorage
     setLocalStorage('so-cart', cart);
   }
+
+
+
+function errorTemplate(){
+
+    return `<div class="error-container">
+        <h1>Can't find product</h1>
+        <p>Try another route</p>
+        </div>`
+}
