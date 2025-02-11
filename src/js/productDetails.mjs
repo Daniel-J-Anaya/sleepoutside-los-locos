@@ -15,7 +15,7 @@ export async function productDetails(productId, selector) {
 
     // add a listener to Add to Cart button
     let button = document.querySelector('#addToCart')
-    button.addEventListener('click', addProductToCart(product))
+    button.addEventListener('click', () => addProductToCart(product))
 
     // trigger animation
     const anim = document.querySelector('.cart svg');
@@ -25,6 +25,7 @@ export async function productDetails(productId, selector) {
             anim.classList.remove('animation');
         }, 1000);
     })
+
     calculateDiscountPercentage(product)
 
 }
@@ -90,7 +91,7 @@ function addProductToCart(product) {
 function calculateDiscountPercentage(product) {
     // Calculate discount percentage
     let discountPercentage = Math.round(((product.SuggestedRetailPrice - product.FinalPrice) / product.SuggestedRetailPrice) * 100);
-    console.log(discountPercentage);
+    // console.log(discountPercentage);
     // Select the discount tag container
     let discountTag = document.querySelector('#discount-tag-image');
 

@@ -33,7 +33,7 @@ setTimeout(1000, () => {document
   .getElementById('addToCart')
   .addEventListener('click', addToCartHandler)});
 
-
+addToCartHandler();
 getParam('product');
 
 loadAlerts();
