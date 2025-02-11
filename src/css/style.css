@@ -283,7 +283,7 @@ footer {
 
 .product-container {
   position: relative;
-  display: inline-block;
+  /* display: inline-block; */
 }
 
 .product-image {
@@ -291,10 +291,10 @@ footer {
   height: auto;
 }
 
-.discount-tag-image {
+#discount-tag-image {
   position: absolute;
   top: 10px;
   right: 10px;
-  width: 50px;  /* Adjust the size of the discount image */
+  width: 80px;  /* Adjust the size of the discount image */
   height: auto;
 }
