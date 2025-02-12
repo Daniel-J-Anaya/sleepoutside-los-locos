@@ -298,3 +298,9 @@ footer {
   width: 80px;  /* Adjust the size of the discount image */
   height: auto;
 }
+
+.product-pricing {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Adjust spacing between prices */
+}

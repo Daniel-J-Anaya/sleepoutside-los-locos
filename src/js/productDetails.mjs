@@ -53,11 +53,12 @@ function productDetailsTemplate(product){
         />
     </div>
 
-
-    <p class="product-suggested-retail__price" id="productSuggestedRetailPrice">$${product.SuggestedRetailPrice}</p>
-
-    <p class="product-card__price" id="productFinalPrice">${product.FinalPrice}</p>
-
+    <div class="product-pricing">
+        <p class="product-card__price">$${product.FinalPrice}</p>
+        <p class="product-suggested-retail__price">
+            <s>$${product.SuggestedRetailPrice}</s>
+        </p>
+    </div>
     <p class="product__color" id="productColorName">${product.Colors[0].ColorName}</p>
 
     <p class="product__description" id="productDescriptionHtmlSimple">${product.DescriptionHtmlSimple}</p>
