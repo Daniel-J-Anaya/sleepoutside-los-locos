@@ -1,3 +1,7 @@
+import MainHeader from './components/MainHeader.svelte';
+import MainFooter from './components/MainFooter.svelte';
+import { mount } from 'svelte';
+
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -44,3 +48,22 @@ export function getParam(param){
   
   return product
 }
+
+export function renderHeaderFooter(){
+  //something that will render our header and footer from svelte 
+  const header = mount(MainHeader, {
+    target: document.querySelector("#main-header"),
+    props: { cartCount: getCartCount() },
+  });
+
+  const footer = mount(MainFooter, {
+    target: document.querySelector('#main-footer'),
+  });
+
+  
+};
+
+export function getCartCount(){
+  const count = getLocalStorage("so-cart")?.length ?? 0;
+  return count;
+};

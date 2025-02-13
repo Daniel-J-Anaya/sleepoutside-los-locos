@@ -1,5 +1,6 @@
 import { getLocalStorage, setLocalStorage } from './utils.mjs';
 import { findProductById } from './productData.mjs';
+import { cartState } from './components/state.svelte';
 
 // let product = {};
 
@@ -87,6 +88,7 @@ function addProductToCart(product) {
   
     // Save the updated cart back to localStorage
     setLocalStorage('so-cart', cart);
+
   }
 
 function calculateDiscountPercentage(product) {
@@ -115,4 +117,7 @@ function calculateDiscountPercentage(product) {
     } else {
         discountTag.style.display = 'none';
     }
+  }
+
+    cartState.count = cartContents.length;
   }
