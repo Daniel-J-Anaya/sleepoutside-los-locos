@@ -148,10 +148,6 @@ button:active {
   align-items: center;
 }
 
-.hidden {
-  display: none;
-}
-
 .animation{
   animation: rock 1s ease-in-out;
 }
