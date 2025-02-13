@@ -8,7 +8,7 @@ export async function productDetails(productId, selector) {
     // use findProductById to get the details for the current product. findProductById will return a promise! use await or .then() to process it
     let product =  await findProductById(productId);
     // once we have the product details we can render out the HTML
-    console.log(product);
+    // console.log(product);
     let productHTML = productDetailsTemplate(product);
     let container = document.querySelector(selector);
 
@@ -16,7 +16,7 @@ export async function productDetails(productId, selector) {
 
     // add a listener to Add to Cart button
     let button = document.querySelector('#addToCart')
-    button.addEventListener('click', addProductToCart(product))
+    button.addEventListener('click', () => addProductToCart(product))
 
     // trigger animation
     const anim = document.querySelector('.cart svg');
@@ -26,7 +26,9 @@ export async function productDetails(productId, selector) {
             anim.classList.remove('animation');
         }, 1000);
     })
-    
+
+    calculateDiscountPercentage(product)
+
 }
    
 
@@ -39,17 +41,25 @@ function productDetailsTemplate(product){
 
     <h2 class="divider" id="productNameWithoutBrand">${product.NameWithoutBrand}</h2>
 
-    <img
-        class="divider"
-        id="productImage"
-        src="${product.Image}"
-        alt="${product.Name}"
-    />
+    <div class="product-container">
+        <img
+            class="divider"
+            id="product-image"
+            src="${product.Image}"
+            alt="${product.Name}"
+        />
+        <img
+            id="discount-tag-image"
+            alt="Discount"
+        />
+    </div>
 
-    <p class="product-suggested-retail__price" id="productSuggestedRetailPrice">$${product.SuggestedRetailPrice}.00</p>
-
-    <p class="product-card__price" id="productFinalPrice">${product.FinalPrice}</p>
-
+    <div class="product-pricing">
+        <p class="product-card__price">$${product.FinalPrice}</p>
+        <p class="product-suggested-retail__price">
+            <s>$${product.SuggestedRetailPrice}</s>
+        </p>
+    </div>
     <p class="product__color" id="productColorName">${product.Colors[0].ColorName}</p>
 
     <p class="product__description" id="productDescriptionHtmlSimple">${product.DescriptionHtmlSimple}</p>
@@ -78,6 +88,36 @@ function addProductToCart(product) {
   
     // Save the updated cart back to localStorage
     setLocalStorage('so-cart', cart);
+
+  }
+
+function calculateDiscountPercentage(product) {
+    // Calculate discount percentage
+    let discountPercentage = Math.round(((product.SuggestedRetailPrice - product.FinalPrice) / product.SuggestedRetailPrice) * 100);
+    // console.log(discountPercentage);
+    // Select the discount tag container
+    let discountTag = document.querySelector('#discount-tag-image');
+
+    // Determine which discount tag to show
+    if (discountPercentage >= 30) {
+        discountTag.src = '../images/discounts/30.jpg';
+        discountTag.style.display = 'block';
+    } else if (discountPercentage >= 25) {
+        discountTag.src = '../images/discounts/25.jpg';
+        discountTag.style.display = 'block';
+    } else if (discountPercentage >= 20) {
+        discountTag.src = '../images/discounts/20.jpg';
+        discountTag.style.display = 'block';
+    } else if (discountPercentage >= 15) {
+        discountTag.src = '../images/discounts/15.jpg';
+        discountTag.style.display = 'block';
+    } else if (discountPercentage >= 10) {
+        discountTag.src = '../images/discounts/10.jpg';
+        discountTag.style.display = 'block';
+    } else {
+        discountTag.style.display = 'none';
+    }
+  }
 
     cartState.count = cartContents.length;
   }
