@@ -94,4 +94,4 @@ function addProductToCart(product) {
   
     // Save the updated cart back to localStorage
     setLocalStorage('so-cart', cart);
-  }
+  };
