@@ -6,29 +6,35 @@ import { cartState } from './components/state.svelte';
 
 export async function productDetails(productId, selector) {
     // use findProductById to get the details for the current product. findProductById will return a promise! use await or .then() to process it
-    let product =  await findProductById(productId);
-    // once we have the product details we can render out the HTML
-    // console.log(product);
-    let productHTML = productDetailsTemplate(product);
-    let container = document.querySelector(selector);
+    try{
+        let product =  await findProductById(productId);
+        // once we have the product details we can render out the HTML
+        let productHTML = productDetailsTemplate(product);
+        let container = document.querySelector(selector);
 
-    container.insertAdjacentHTML('afterbegin', productHTML);
+        container.insertAdjacentHTML('afterbegin', productHTML);
 
-    // add a listener to Add to Cart button
-    let button = document.querySelector('#addToCart')
-    button.addEventListener('click', () => addProductToCart(product))
+        // add a listener to Add to Cart button
+        let button = document.querySelector('#addToCart')
+        button.addEventListener('click', addProductToCart(product))
 
-    // trigger animation
-    const anim = document.querySelector('.cart svg');
-    button.addEventListener('click', () => {
-        anim.classList.add('animation');
-        setTimeout(() => {
-            anim.classList.remove('animation');
-        }, 1000);
-    })
+        // trigger animation
+        const anim = document.querySelector('.cart svg');
+        button.addEventListener('click', () => {
+            anim.classList.add('animation');
+            setTimeout(() => {
+                anim.classList.remove('animation');
+            }, 1000);
+        })
+        calculateDiscountPercentage(product)
+    }
+    catch (error){
+        console.log('Product not found')
+        let errorHTML = errorTemplate()
+        let container = document.querySelector(selector);
 
-    calculateDiscountPercentage(product)
-
+        container.insertAdjacentHTML('afterbegin', errorHTML);
+    }
 }
    
 
@@ -88,36 +94,14 @@ function addProductToCart(product) {
   
     // Save the updated cart back to localStorage
     setLocalStorage('so-cart', cart);
-
   }
 
-function calculateDiscountPercentage(product) {
-    // Calculate discount percentage
-    let discountPercentage = Math.round(((product.SuggestedRetailPrice - product.FinalPrice) / product.SuggestedRetailPrice) * 100);
-    // console.log(discountPercentage);
-    // Select the discount tag container
-    let discountTag = document.querySelector('#discount-tag-image');
 
-    // Determine which discount tag to show
-    if (discountPercentage >= 30) {
-        discountTag.src = '../images/discounts/30.jpg';
-        discountTag.style.display = 'block';
-    } else if (discountPercentage >= 25) {
-        discountTag.src = '../images/discounts/25.jpg';
-        discountTag.style.display = 'block';
-    } else if (discountPercentage >= 20) {
-        discountTag.src = '../images/discounts/20.jpg';
-        discountTag.style.display = 'block';
-    } else if (discountPercentage >= 15) {
-        discountTag.src = '../images/discounts/15.jpg';
-        discountTag.style.display = 'block';
-    } else if (discountPercentage >= 10) {
-        discountTag.src = '../images/discounts/10.jpg';
-        discountTag.style.display = 'block';
-    } else {
-        discountTag.style.display = 'none';
-    }
-  }
 
-    cartState.count = cartContents.length;
-  }
+function errorTemplate(){
+
+    return `<div class="error-container">
+        <h1>Can't find product</h1>
+        <p>Try another route</p>
+        </div>`
+}
