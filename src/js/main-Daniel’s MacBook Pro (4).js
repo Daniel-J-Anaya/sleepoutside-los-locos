@@ -3,9 +3,10 @@ import { mount } from 'svelte';
 import { loadAlerts } from './alert.js';
 import { renderHeaderFooter } from './utils.mjs';
 
-renderHeaderFooter();
-
 const productList = mount(ProductList, {
   target: document.querySelector('.products'),
   props: { category: 'tents' }
 });
+
+
+renderHeaderFooter();
