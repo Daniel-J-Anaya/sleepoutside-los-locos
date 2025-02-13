@@ -1,5 +1,6 @@
 import { getLocalStorage, setLocalStorage } from './utils.mjs';
 import { findProductById } from './productData.mjs';
+import { cartState } from './components/state.svelte';
 
 // let product = {};
 
@@ -25,6 +26,7 @@ export async function productDetails(productId, selector) {
                 anim.classList.remove('animation');
             }, 1000);
         })
+        calculateDiscountPercentage(product)
     }
     catch (error){
         console.log('Product not found')
@@ -45,17 +47,25 @@ function productDetailsTemplate(product){
 
     <h2 class="divider" id="productNameWithoutBrand">${product.NameWithoutBrand}</h2>
 
-    <img
-        class="divider"
-        id="productImage"
-        src="${product.Image}"
-        alt="${product.Name}"
-    />
+    <div class="product-container">
+        <img
+            class="divider"
+            id="product-image"
+            src="${product.Image}"
+            alt="${product.Name}"
+        />
+        <img
+            id="discount-tag-image"
+            alt="Discount"
+        />
+    </div>
 
-    <p class="product-suggested-retail__price" id="productSuggestedRetailPrice">$${product.SuggestedRetailPrice}.00</p>
-
-    <p class="product-card__price" id="productFinalPrice">${product.FinalPrice}</p>
-
+    <div class="product-pricing">
+        <p class="product-card__price">$${product.FinalPrice}</p>
+        <p class="product-suggested-retail__price">
+            <s>$${product.SuggestedRetailPrice}</s>
+        </p>
+    </div>
     <p class="product__color" id="productColorName">${product.Colors[0].ColorName}</p>
 
     <p class="product__description" id="productDescriptionHtmlSimple">${product.DescriptionHtmlSimple}</p>
