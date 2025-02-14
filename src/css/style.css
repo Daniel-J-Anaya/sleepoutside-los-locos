@@ -201,6 +201,15 @@ button:active {
   text-decoration: none;
   color: var(--dark-grey);
 }
+
+/* Styles for product category icons */
+.products{
+  display: block;
+}
+.tents-icon, .backpack-icon, .sleeping-bag-icon, .hammock-icon{
+  width: 25%;
+}
+
 /* Styles for product lists */
 .product-card {
   flex: 1 1 45%;

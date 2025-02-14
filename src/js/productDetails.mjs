@@ -1,6 +1,6 @@
 import { getLocalStorage, setLocalStorage } from './utils.mjs';
 import { findProductById } from './productData.mjs';
-import { cartState } from './components/state.svelte';
+// import { cartState } from './components/state.svelte.js';
 
 // let product = {};
 
@@ -16,7 +16,7 @@ export async function productDetails(productId, selector) {
 
         // add a listener to Add to Cart button
         let button = document.querySelector('#addToCart')
-        button.addEventListener('click', addProductToCart(product))
+        button.addEventListener('click', () => addProductToCart(product))
 
         // trigger animation
         const anim = document.querySelector('.cart svg');
@@ -97,6 +97,33 @@ function addProductToCart(product) {
   }
 
 
+  function calculateDiscountPercentage(product) {
+    // Calculate discount percentage
+    let discountPercentage = Math.round(((product.SuggestedRetailPrice - product.FinalPrice) / product.SuggestedRetailPrice) * 100);
+    // console.log(discountPercentage);
+    // Select the discount tag container
+    let discountTag = document.querySelector('#discount-tag-image');
+
+    // Determine which discount tag to show
+    if (discountPercentage >= 30) {
+        discountTag.src = '../images/discounts/30.jpg';
+        discountTag.style.display = 'block';
+    } else if (discountPercentage >= 25) {
+        discountTag.src = '../images/discounts/25.jpg';
+        discountTag.style.display = 'block';
+    } else if (discountPercentage >= 20) {
+        discountTag.src = '../images/discounts/20.jpg';
+        discountTag.style.display = 'block';
+    } else if (discountPercentage >= 15) {
+        discountTag.src = '../images/discounts/15.jpg';
+        discountTag.style.display = 'block';
+    } else if (discountPercentage >= 10) {
+        discountTag.src = '../images/discounts/10.jpg';
+        discountTag.style.display = 'block';
+    } else {
+        discountTag.style.display = 'none';
+    }
+  }
 
 function errorTemplate(){
 
