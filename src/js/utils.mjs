@@ -44,7 +44,6 @@ export function getParam(param){
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const product = urlParams.get(param);
-  console.log('You made it');
   
   return product
 }
@@ -52,7 +51,7 @@ export function getParam(param){
 export function renderHeaderFooter(){
   //something that will render our header and footer from svelte 
   const header = mount(MainHeader, {
-    target: document.querySelector("#main-header"),
+    target: document.querySelector('#main-header'),
     props: { cartCount: getCartCount() },
   });
 
@@ -64,6 +63,6 @@ export function renderHeaderFooter(){
 };
 
 export function getCartCount(){
-  const count = getLocalStorage("so-cart")?.length ?? 0;
+  const count = getLocalStorage('so-cart')?.length ?? 0;
   return count;
 };
