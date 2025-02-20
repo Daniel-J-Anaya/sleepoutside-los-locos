@@ -4,6 +4,7 @@ import { mount } from 'svelte';
 
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
+  console.log('hello');
   return parent.querySelector(selector);
 }
 // or a more concise version if you are into that sort of thing:
