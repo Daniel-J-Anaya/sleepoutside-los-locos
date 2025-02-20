@@ -2,11 +2,11 @@ import { getLocalStorage, setLocalStorage } from './utils.mjs';
 import { findProductById } from './productData.mjs';
 // import { cartState } from './components/state.svelte.js';
 
-// let product = {};
 
 export async function productDetails(productId, selector) {
     // use findProductById to get the details for the current product. findProductById will return a promise! use await or .then() to process it
     try{
+        console.log(productId)
         let product =  await findProductById(productId);
         // once we have the product details we can render out the HTML
         let productHTML = productDetailsTemplate(product);
@@ -30,6 +30,7 @@ export async function productDetails(productId, selector) {
     }
     catch (error){
         console.log('Product not found')
+        console.log(error)
         let errorHTML = errorTemplate()
         let container = document.querySelector(selector);
 
