@@ -1,5 +1,6 @@
 import MainHeader from './components/MainHeader.svelte';
 import MainFooter from './components/MainFooter.svelte';
+import CheckoutForm from './components/CheckoutForm.svelte';
 import { mount } from 'svelte';
 
 // wrapper for querySelector...returns matching element
@@ -62,6 +63,12 @@ export function renderHeaderFooter(){
 
   
 };
+
+export function renderCheckoutForm(){
+  const checkoutForm = mount(CheckoutForm, {
+    target: document.querySelector('#checkout-form'),
+  });
+}
 
 export function getCartCount(){
   const count = getLocalStorage('so-cart')?.length ?? 0;

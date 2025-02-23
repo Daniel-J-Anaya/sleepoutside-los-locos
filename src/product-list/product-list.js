@@ -4,9 +4,10 @@ import { getParam, renderHeaderFooter } from '../js/utils.mjs';
 
 renderHeaderFooter();
 
+const category = getParam('category');
 const productList = mount(ProductList, {
     target: document.querySelector('.products'),
-    props: { category: 'tents' },
+    props: { category: category},
   });
 
-const category = getParam('category');
+
