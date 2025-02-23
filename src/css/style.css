@@ -25,6 +25,9 @@ body {
 img {
   max-width: 100%;
 }
+.hidden{
+  display: none;
+}
 header {
   display: flex;
   justify-content: space-between;

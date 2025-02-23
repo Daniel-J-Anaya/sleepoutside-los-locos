@@ -45,6 +45,19 @@ function deleteItemFromCart(index){
   renderCartContents()
   
 }
+function calculateCartTotal(){
+  const cartItems = getLocalStorage('so-cart');
+  const total = cartItems.reduce((sum, item) => sum + item.FinalPrice, 0);
 
-renderCartContents();
-renderHeaderFooter();
+  const cartTotal = document.querySelector('.cart-total');
+  console.log(cartTotal)
+  cartTotal.innerText = `$${total}`;
+};
+
+function innit(){
+  renderCartContents();
+  renderHeaderFooter();
+  calculateCartTotal();
+}
+
+innit()
