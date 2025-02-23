@@ -203,12 +203,11 @@ button:active {
 }
 
 /* Styles for product category icons */
-.products{
-  display: block;
+.products-icons{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 }
-.tents-icon, .backpack-icon, .sleeping-bag-icon, .hammock-icon{
-  width: 25%;
-}
+
 
 /* Styles for product lists */
 .product-card {
