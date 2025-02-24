@@ -25,6 +25,9 @@ body {
 img {
   max-width: 100%;
 }
+.hidden{
+  display: none;
+}
 header {
   display: flex;
   justify-content: space-between;
@@ -110,6 +113,24 @@ button:hover {
   filter: brightness(85%);
 }
 button:active {
+  scale: .9;
+}
+.button{
+  padding: 0.5em 2em;
+  background-color: var(--secondary-color);
+  color: white;
+  margin: auto;
+  border-radius: 20px;
+  display: block;
+  border: 0;
+  font-size: var(--large-font);
+  cursor: pointer;
+  width: 150px;
+}
+.button:hover {
+  filter: brightness(85%);
+}
+.button:active {
   scale: .9;
 }
 .divider {
@@ -203,12 +224,11 @@ button:active {
 }
 
 /* Styles for product category icons */
-.products{
-  display: block;
+.products-icons{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 }
-.tents-icon, .backpack-icon, .sleeping-bag-icon, .hammock-icon{
-  width: 25%;
-}
+
 
 /* Styles for product lists */
 .product-card {
