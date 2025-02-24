@@ -14,8 +14,8 @@ if (visited){
 
 function createBanner(){
     let bannerHTML = `
-    <div class="modal" id="modal">
-    <div class="modal-content">
+    <div class="banner" id="banner">
+    <div class="banner-content">
       <span class="close" id="close">&times;</span>
       <h2>Win Big! 🎉</h2>
       <p>Register today to enter our exclusive giveaway and stand a chance to win amazing prizes!</p>
