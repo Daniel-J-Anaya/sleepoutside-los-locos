@@ -51,7 +51,7 @@ function calculateCartTotal(){
 
   const cartTotal = document.querySelector('.cart-total');
   console.log(cartTotal)
-  cartTotal.innerText = `$${total}`;
+  cartTotal.innerText = `Total: $${total}`;
 };
 
 function innit(){
