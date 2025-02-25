@@ -4,7 +4,6 @@
 </script>
 
 <div class="logo">
-    <!-- svelte-ignore a11y_img_redundant_alt -->
     <img src="/images/noun_Tent_2517.svg" alt="tent image for logo" />
     <a href="index.html"> Sleep<span class="highlight">Outside</span></a>
 </div>
