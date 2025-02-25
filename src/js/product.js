@@ -15,18 +15,23 @@ function addProductToCart(product) {
     cart = cart ? [cart] : [];
   }
 
-  // Add the new product to the cart array
-  cart.push(product);
+  // Check if the product is already in the cart
+  const existingProductIndex = cart.findIndex(item => item.id === product.id);
 
-  // Save the updated cart back to localStorage
-  setLocalStorage('so-cart', cart);
-}
+  if (existingProductIndex !== -1) {
+    // Product exists in the cart, increment the quantity
+    cart[existingProductIndex].quantity += product.quantity;
+  } else {
+    // Product is not in the cart, add it with the quantity
+    cart.push(product);
+  }
+};
 
 // add to cart button event handler
 async function addToCartHandler(e) {
   const product = await findProductById(e.target.dataset.id);
   addProductToCart(product);
-}
+};
 
 // add listener to Add to Cart button
 setTimeout(1000, () => {document

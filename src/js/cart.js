@@ -19,7 +19,7 @@ function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
-      src="${item.Image}"
+      src="${item.Images.PrimaryMedium}"
       alt="${item.Name}"
     />
   </a>
@@ -45,19 +45,20 @@ function deleteItemFromCart(index){
   renderCartContents()
   
 }
+
 function calculateCartTotal(){
   const cartItems = getLocalStorage('so-cart');
   const total = cartItems.reduce((sum, item) => sum + item.FinalPrice, 0);
 
   const cartTotal = document.querySelector('.cart-total');
   console.log(cartTotal)
-  cartTotal.innerText = `$${total}`;
+  cartTotal.innerText = `Total: $${total}`;
 };
 
 function innit(){
   renderCartContents();
   renderHeaderFooter();
   calculateCartTotal();
-}
+};
 
 innit()

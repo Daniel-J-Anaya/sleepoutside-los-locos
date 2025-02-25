@@ -15,7 +15,6 @@
   "author": "Shane Thompson",
   "license": "ISC",
   "devDependencies": {
-    "@rollup/plugin-html": "^2.0.0",
     "@sveltejs/vite-plugin-svelte": "^5.0.3",
     "eslint": "^8.26.0",
     "eslint-config-prettier": "^8.5.0",

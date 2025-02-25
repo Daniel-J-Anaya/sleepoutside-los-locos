@@ -25,9 +25,6 @@ body {
 img {
   max-width: 100%;
 }
-.hidden{
-  display: none;
-}
 header {
   display: flex;
   justify-content: space-between;
@@ -172,24 +169,6 @@ button:hover {
 button:active {
   scale: .9;
 }
-.button{
-  padding: 0.5em 2em;
-  background-color: var(--secondary-color);
-  color: white;
-  margin: auto;
-  border-radius: 20px;
-  display: block;
-  border: 0;
-  font-size: var(--large-font);
-  cursor: pointer;
-  width: 150px;
-}
-.button:hover {
-  filter: brightness(85%);
-}
-.button:active {
-  scale: .9;
-}
 .divider {
   border-bottom: 2px solid var(--primary-color);
 }
@@ -279,14 +258,6 @@ button:active {
   text-decoration: none;
   color: var(--dark-grey);
 }
-
-/* Styles for product category icons */
-.products-icons{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-
-
 /* Styles for product lists */
 .product-card {
   flex: 1 1 45%;

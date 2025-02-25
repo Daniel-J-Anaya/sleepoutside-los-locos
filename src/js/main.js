@@ -1,6 +1,15 @@
+import ProductList from './components/ProductList.svelte';
+import { mount } from 'svelte';
+import { loadAlerts } from './alert.js';
 import { renderHeaderFooter, getLocalStorage, setLocalStorage } from './utils.mjs';
 
 renderHeaderFooter();
+
+
+const productList = mount(ProductList, {
+  target: document.querySelector('.products'),
+  props: { category: 'tents' }
+});
 
 let visited = (getLocalStorage('visited').length != 0) ? true : false;
 
