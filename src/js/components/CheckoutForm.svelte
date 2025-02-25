@@ -6,6 +6,8 @@
     let price = 0      // cart subtotal
     let shipping = 0  // 10 + (number of items - 1) * 2
     let total = 0 // everything added together
+    console.log('hello')
+
     
 
     function init(){
