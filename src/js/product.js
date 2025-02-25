@@ -25,6 +25,7 @@ function addProductToCart(product) {
     // Product is not in the cart, add it with the quantity
     cart.push(product);
   }
+};
 
 // add to cart button event handler
 async function addToCartHandler(e) {
