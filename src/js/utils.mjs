@@ -1,11 +1,9 @@
 import MainHeader from './components/MainHeader.svelte';
 import MainFooter from './components/MainFooter.svelte';
-import CheckoutForm from './components/CheckoutForm.svelte';
 import { mount } from 'svelte';
 
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
-  console.log('hello');
   return parent.querySelector(selector);
 }
 // or a more concise version if you are into that sort of thing:
@@ -53,7 +51,7 @@ export function getParam(param){
 export function renderHeaderFooter(){
   //something that will render our header and footer from svelte 
   const header = mount(MainHeader, {
-    target: document.querySelector('#main-header'),
+    target: document.querySelector("#main-header"),
     props: { cartCount: getCartCount() },
   });
 
@@ -64,13 +62,7 @@ export function renderHeaderFooter(){
   
 };
 
-export function renderCheckoutForm(){
-  const checkoutForm = mount(CheckoutForm, {
-    target: document.querySelector('#checkout-form'),
-  });
-}
-
 export function getCartCount(){
-  const count = getLocalStorage('so-cart')?.length ?? 0;
+  const count = getLocalStorage("so-cart")?.length ?? 0;
   return count;
 };
