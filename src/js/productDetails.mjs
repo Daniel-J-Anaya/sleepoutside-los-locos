@@ -4,6 +4,28 @@ import { cartState } from './components/state.svelte';
 
 // let product = {};
 
+function addProductToCart(product) {
+    // Retrieve the existing cart from localStorage
+    let cart = getLocalStorage('so-cart');
+  
+    // If cart is not an array (i.e., a single product), make it an array
+    if (!Array.isArray(cart)) {
+      cart = cart ? [cart] : [];
+    }
+    
+    // Check if the product is already in the cart
+    const existingProductIndex = cart.findIndex(item => item.id === product.id);
+  
+    if (existingProductIndex !== -1) {
+      // Product exists in the cart, increment the quantity
+      cart[existingProductIndex].quantity += product.quantity;
+    } else {
+      // Product is not in the cart, add it with the quantity
+      cart.push(product);
+      setLocalStorage('so-cart', cart);
+    }
+  };
+  
 export async function productDetails(productId, selector) {
     // use findProductById to get the details for the current product. findProductById will return a promise! use await or .then() to process it
     try{
@@ -16,7 +38,7 @@ export async function productDetails(productId, selector) {
 
         // add a listener to Add to Cart button
         let button = document.querySelector('#addToCart')
-        button.addEventListener('click', addProductToCart(product))
+        button.addEventListener('click', () => {addProductToCart(product)})
 
         // trigger animation
         const anim = document.querySelector('.cart svg');
@@ -26,7 +48,6 @@ export async function productDetails(productId, selector) {
                 anim.classList.remove('animation');
             }, 1000);
         })
-        calculateDiscountPercentage(product)
     }
     catch (error){
         console.log('Product not found')
@@ -36,8 +57,6 @@ export async function productDetails(productId, selector) {
         container.insertAdjacentHTML('afterbegin', errorHTML);
     }
 }
-   
-
 
 function productDetailsTemplate(product){
 
@@ -76,27 +95,6 @@ function productDetailsTemplate(product){
     
     `
 }
-
-
-
-
-function addProductToCart(product) {
-    // Retrieve the existing cart from localStorage
-    let cart = getLocalStorage('so-cart');
-  
-    // If cart is not an array (i.e., a single product), make it an array
-    if (!Array.isArray(cart)) {
-        cart = cart ? [cart] : [];
-    }
-  
-    // Add the new product to the cart array
-    cart.push(product);
-  
-    // Save the updated cart back to localStorage
-    setLocalStorage('so-cart', cart);
-  }
-
-
 
 function errorTemplate(){
 

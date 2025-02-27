@@ -46,19 +46,18 @@ function deleteItemFromCart(index){
   
 }
 
-function calculateCartTotal(){
-  const cartItems = getLocalStorage('so-cart');
-  const total = cartItems.reduce((sum, item) => sum + item.FinalPrice, 0);
+// function calculateCartTotal(){
+//   const cartItems = getLocalStorage('so-cart');
+//   const total = cartItems.reduce((sum, item) => sum + item.FinalPrice, 0);
 
-  const cartTotal = document.querySelector('.cart-total');
-  console.log(cartTotal)
-  cartTotal.innerText = `Total: $${total}`;
-};
+//   const cartTotal = document.querySelector('.cart-total');
+//   console.log(cartTotal)
+//   cartTotal.innerText = `Total: $${total}`;
+// };
 
 function innit(){
   renderCartContents();
   renderHeaderFooter();
-  calculateCartTotal();
 };
 
 innit()
