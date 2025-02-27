@@ -1,26 +1,29 @@
 <script>
     import { get } from 'svelte/store';
     import { getLocalStorage } from '../utils.mjs'
-    let tax = price * .06;
-    let productNames = [];
-    let price = 0      // cart subtotal
-    let shipping = 0  // 10 + (number of items - 1) * 2
-    let total = 0 // everything added together
+    let list = [];
+    let shipping = 0
+    let subtotal = 0
+    let tax = 0
+    let total = 0 
     console.log('hello')
  
     
  
     function init(){
-        const cartItems = getLocalStorage('so-cart');
-        const total = cartItems.reduce((sum, item) => sum + item.FinalPrice, 0);
-        
+        list = getLocalStorage('so-cart');
+    };
  
-    }
- 
-    function calculateItemSummary(){    
-        
-    }
+    function calculateItemSummary(){  
+        init(); 
+        subtotal = list.reduce((sum, item) => sum + item.FinalPrice, 0);
+        shipping = 10 + (list.length - 1) * 2 
+        tax = subtotal * .06;
+    };
+
+    calculateItemSummary();
 </script>
+
 <h2>Review & Place your Order</h2>
         <form id='orderForm'>
             <fieldset>
@@ -32,6 +35,7 @@
                 <label>State <input type='text' name ='state' id='state'></label>
                 <label>Zip <input type='text' name ='zip' id='zip'></label>
             </fieldset>
+            <br>
             <fieldset>
                 <legend>Payment</legend>
                 <label>Card Number <input type='text' name ='cardNumber' id='cardNumber'></label>
@@ -39,18 +43,17 @@
                 <label>Security Code <input type='text' name ='code' id='securityCode'></label>
             </fieldset>
             <p id='errorMessage' class='error'></p>
+            <fieldset>
+                <legend>Order Summary</legend>
+                    <p>Subtotal: ${subtotal}</p>
+                    <p>Tax: ${tax}</p>
+                    <p>Shipping: ${shipping}</p>
+                    <p><strong>Total: ${total}</strong></p>
+            </fieldset>
+            <br>
+            <button type='button'>Place Order</button>
+            <br>
         </form>
-        <div class='order-summary'>
-            <h3>Order Summary</h3>
-            <p>Product: {productNames}</p>
-            <p>Price: ${price}</p>
-            <p>Tax: ${tax}</p>
-            <p>Shipping: ${shipping}</p>
-            <p><strong>Total: ${total}</strong></p>
-        </div>
-        
-        <button type='button'>Place Order</button>
- 
 <style>
     body {
         font-family: Arial, sans-serif;
