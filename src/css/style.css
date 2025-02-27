@@ -244,7 +244,12 @@ button:active {
   max-width: 600px;
   margin: auto;
 }
-.products {
+.products a {
+  text-decoration: none;
+}
+.products img {
+  display: inline-block;
+  max-width: 250px;
   padding: 0.5em;
 }
 .product-list {
