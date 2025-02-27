@@ -27,6 +27,7 @@ export function getLocalStorage(key) {
 
 // save data to local storage
 export function setLocalStorage(key, data) {
+  debugger
   localStorage.setItem(key, JSON.stringify(data));
 }
 
@@ -51,7 +52,7 @@ export function getParam(param){
 export function renderHeaderFooter(){
   //something that will render our header and footer from svelte 
   const header = mount(MainHeader, {
-    target: document.querySelector("#main-header"),
+    target: document.querySelector('#main-header'),
     props: { cartCount: getCartCount() },
   });
 
