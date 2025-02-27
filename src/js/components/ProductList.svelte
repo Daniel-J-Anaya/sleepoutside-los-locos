@@ -1,12 +1,10 @@
 <script>
   import ProductSummary from "./ProductSummary.svelte";
   import { getData } from "../productData.mjs";
-  import { loadAlerts } from "../alert.js";
 
   let { category } = $props();
 
   let promise = getData(category);
-  loadAlerts();
 </script>
 
 <h2>Top Products</h2>
