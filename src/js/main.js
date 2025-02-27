@@ -13,8 +13,7 @@ const productList = mount(ProductList, {
 
 let visited = getLocalStorage('visited');
 
-if (visited){
-  debugger
+if (visited.length != 0){
   let prevDate = new Date(visited[0])
   const currentDate = new Date();
     
@@ -64,7 +63,7 @@ function createSignUp(){
       <span class="close" id="close">&times;</span>
       <h2>Join us</h2>
       <p>Subscribe to receive our offers and get notified about new products</p>
-      <input type = textarea placeholder="YOUR EMAIL ADDRESS">
+      <input style='width:300px; padding:12px; margin:10px;'' type=textarea placeholder="YOUR EMAIL ADDRESS">
       <button class="register-btn" id="register-btn">SUBSCRIBE</button>
     </div>
   </div>`

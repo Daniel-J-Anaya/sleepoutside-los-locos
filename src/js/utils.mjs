@@ -27,7 +27,6 @@ export function getLocalStorage(key) {
 
 // save data to local storage
 export function setLocalStorage(key, data) {
-  debugger
   localStorage.setItem(key, JSON.stringify(data));
 }
 
@@ -64,6 +63,6 @@ export function renderHeaderFooter(){
 };
 
 export function getCartCount(){
-  const count = getLocalStorage("so-cart")?.length ?? 0;
+  const count = getLocalStorage('so-cart')?.length ?? 0;
   return count;
 };
