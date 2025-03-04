@@ -30,7 +30,6 @@
 
     const packageItems = function (items) {
     const simplifiedItems = items.map((item) => {
-      console.log(item);
       return {
         id: item.Id,
         price: item.FinalPrice,
@@ -50,7 +49,6 @@
         json.tax = tax;
         json.shipping = shipping;
         json.items = packageItems(list);
-        console.log(json);
         try {
             const res = await checkout(json);
             console.log(res);
