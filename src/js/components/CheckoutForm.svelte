@@ -12,16 +12,25 @@
  
     function init(){
         list = getLocalStorage('so-cart');
+        setTimeout(()=>{
+            document.querySelector('#zip').addEventListener('input',calculateItemSummary)}
+            ,1000)
+
     };
  
     function calculateItemSummary(){  
-        init(); 
         subtotal = list.reduce((sum, item) => sum + item.FinalPrice, 0);
         shipping = 10 + (list.length - 1) * 2 
         tax = subtotal * .06;
-    };
+        total = (subtotal + shipping + tax);
+        // round to 2 decimal places
+        subtotal = subtotal.toFixed(2);
+        tax = tax.toFixed(2);
+        total = total.toFixed(2);
 
-    calculateItemSummary();
+    };
+    
+    init();
 </script>
 
 <h2>Review & Place your Order</h2>
@@ -45,7 +54,7 @@
             <p id='errorMessage' class='error'></p>
             <fieldset>
                 <legend>Order Summary</legend>
-                    <p>Subtotal: ${subtotal}</p>
+                    <p>Subtotal({list.length}): ${subtotal}</p>
                     <p>Tax: ${tax}</p>
                     <p>Shipping: ${shipping}</p>
                     <p><strong>Total: ${total}</strong></p>
