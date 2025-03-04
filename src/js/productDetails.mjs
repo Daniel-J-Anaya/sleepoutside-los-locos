@@ -5,19 +5,24 @@ import { cartState } from './components/state.svelte';
 // let product = {};
 
 function addProductToCart(product) {
-    // Retrieve the existing cart from localStorage
     let cart = getLocalStorage('so-cart');
-  
-    // If cart is not an array (i.e., a single product), make it an array
-    if (!Array.isArray(cart)) {
-      cart = cart ? [cart] : [];
-    }
-    
-      // Product is not in the cart, add it with the quantity
-      cart.push(product);
-      setLocalStorage('so-cart', cart);
 
-  };
+    if (!Array.isArray(cart)) {
+        cart = cart ? [cart] : [];
+    }
+
+    // Check if the product is already in the cart
+    let existingProduct = cart.find(item => item.Id === product.Id);
+
+    if (existingProduct) {
+        existingProduct.quantity += 1; // Increment quantity
+    } else {
+        product.quantity = 1; // Add product with quantity property
+        cart.push(product);
+    }
+
+    setLocalStorage('so-cart', cart);
+};
   
 export async function productDetails(productId, selector) {
     // use findProductById to get the details for the current product. findProductById will return a promise! use await or .then() to process it
