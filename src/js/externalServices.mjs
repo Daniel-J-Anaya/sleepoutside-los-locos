@@ -22,8 +22,15 @@ export async function findProductById(id) {
 }
 
 
-// export async function checkout(id) {
-//   const products = await fetch(baseURL + `checkout/`);
-//   const productData = await products.json();
-//   return productData.Result;
-// }
+export async function checkout(json) {
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(json)
+  }  
+  const products = await fetch(baseURL + `checkout/`, options);
+  const productData = await products.json();
+  return productData.Result;
+}
