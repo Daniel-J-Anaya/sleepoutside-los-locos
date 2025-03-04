@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage } from './utils.mjs';
+import { getLocalStorage, setLocalStorage, renderHeaderFooter } from './utils.mjs';
 import { findProductById } from './productData.mjs';
 import { cartState } from './components/state.svelte';
 
@@ -13,22 +13,16 @@ function addProductToCart(product) {
       cart = cart ? [cart] : [];
     }
     
-    // Check if the product is already in the cart
-    const existingProductIndex = cart.findIndex(item => item.id === product.id);
-  
-    if (existingProductIndex !== -1) {
-      // Product exists in the cart, increment the quantity
-      cart[existingProductIndex].quantity += product.quantity;
-    } else {
       // Product is not in the cart, add it with the quantity
       cart.push(product);
       setLocalStorage('so-cart', cart);
-    }
+
   };
   
 export async function productDetails(productId, selector) {
     // use findProductById to get the details for the current product. findProductById will return a promise! use await or .then() to process it
     try{
+        renderHeaderFooter();
         let product =  await findProductById(productId);
         // once we have the product details we can render out the HTML
         let productHTML = productDetailsTemplate(product);
