@@ -7,6 +7,13 @@
     <img src="/images/noun_Tent_2517.svg" alt="tent image for logo" />
     <a href="/"> Sleep<span class="highlight">Outside</span></a>
 </div>
+<div class="searchbar top results">
+    <form id="searchForm" action="">
+        <input type="text" placeholder="Type the product you are looking for">
+        <button id="submitSearch">&#128269;</button>
+    </form>
+
+</div>
 <div class="cart">
     <a href="/cart/index.html">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
