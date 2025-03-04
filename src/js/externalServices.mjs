@@ -26,11 +26,9 @@ export async function checkout(json) {
   const options = {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify(json)
-  }  
-  const products = await fetch(baseURL + `checkout/`, options);
-  const productData = await products.json();
-  return productData.Result;
+    body: JSON.stringify(json),
+  };
+  return await fetch(baseURL + 'checkout/', options).then(convertToJson);
 }
