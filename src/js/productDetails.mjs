@@ -1,5 +1,5 @@
 import { getLocalStorage, setLocalStorage, renderHeaderFooter } from './utils.mjs';
-import { findProductById } from './productData.mjs';
+import { findProductById } from './externalServices.mjs';
 import { cartState } from './components/state.svelte';
 
 // let product = {};
