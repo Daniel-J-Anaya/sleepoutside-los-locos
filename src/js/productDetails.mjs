@@ -22,6 +22,7 @@ function addProductToCart(product) {
     }
 
     setLocalStorage('so-cart', cart);
+    window.scrollTo(0, 0);
 };
   
 export async function productDetails(productId, selector) {
