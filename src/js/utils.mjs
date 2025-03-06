@@ -81,6 +81,23 @@ export function formDataToJSON(formElement) {
   return convertedJSON;
 }
 
+export function setupColorSelection() {
+  const colorButtons = document.querySelectorAll('.detail-color-button');
+  const productImage = document.querySelector('#product-image');
+  const colorNameElement = document.querySelector('#productColorName');
+
+  colorButtons.forEach(button => {
+      button.addEventListener('click', () => {
+          const newImageSrc = button.getAttribute('data-image');
+          const newColorName = button.getAttribute('data-color-name');
+
+          productImage.src = newImageSrc;
+          colorNameElement.textContent = newColorName;
+          // console.log(newColorName);
+      });
+  });
+}
+
 export function alertMessage(message, scroll = true, duration = 3000) {
   const alert = mount(AlertMessage, {
     target: document.querySelector('body'),
@@ -98,3 +115,4 @@ export function removeAllAlerts() {
   const alerts = document.querySelectorAll('.alert');
   alerts.forEach((alert) => alert.remove());
 }
+
