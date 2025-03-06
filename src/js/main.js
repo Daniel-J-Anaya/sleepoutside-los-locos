@@ -1,8 +1,9 @@
 import { mount } from 'svelte';
 import { renderHeaderFooter, getLocalStorage, setLocalStorage } from './utils.mjs';
+import { loadAlerts } from './alert.js';
 
 renderHeaderFooter();
-
+loadAlerts();
 
 // const productList = mount(ProductList, {
 //   target: document.querySelector('.products'),
