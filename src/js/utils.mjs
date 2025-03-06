@@ -79,3 +79,22 @@ export function formDataToJSON(formElement) {
 
   return convertedJSON;
 }
+
+
+export function setupColorSelection() {
+  const colorButtons = document.querySelectorAll('.detail-color-button');
+  const productImage = document.querySelector('#product-image');
+  const colorNameElement = document.querySelector('#productColorName');
+
+  colorButtons.forEach(button => {
+      button.addEventListener('click', () => {
+          const newImageSrc = button.getAttribute('data-image');
+          const newColorName = button.getAttribute('data-color-name');
+
+          productImage.src = newImageSrc;
+          colorNameElement.textContent = newColorName;
+          // console.log(newColorName);
+      });
+  });
+}
+
