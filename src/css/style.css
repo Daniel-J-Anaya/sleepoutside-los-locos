@@ -300,7 +300,8 @@ button:active, .button {
 
 /* Start cart list card styles */
 .cart-item-image {
-  padding: 5%;
+  padding: 10%;
+  width: 100%;
 }
 .cart-card {
   display: grid;

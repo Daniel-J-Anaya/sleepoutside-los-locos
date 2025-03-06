@@ -2,7 +2,6 @@ import MainHeader from './components/MainHeader.svelte';
 import MainFooter from './components/MainFooter.svelte';
 import AlertMessage from './components/AlertMessage.svelte';
 import { mount } from 'svelte';
-import { loadAlerts } from './alert';
 
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
@@ -61,7 +60,6 @@ export function renderHeaderFooter(){
     target: document.querySelector('#main-footer'),
   });
 
-  loadAlerts();
 };
 
 export function getCartCount(){
