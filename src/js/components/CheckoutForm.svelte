@@ -1,6 +1,6 @@
 <script>
     // import { get } from 'svelte/store';
-    import { getLocalStorage, formDataToJSON } from '../utils.mjs'
+    import { getLocalStorage, formDataToJSON, alertMessage} from '../utils.mjs'
     import { checkout } from '../externalServices.mjs'
     
     let list = [];
@@ -51,9 +51,12 @@
         json.items = packageItems(list);
         try {
             const res = await checkout(json);
-            console.log(res);
+            window.location.href='./success.html'
+            
         } catch (err) {
+            alertMessage(err.message)
             console.log(err);
+            // alert('Information Error, please enter correct information.')
         }
     };
     
@@ -64,19 +67,19 @@
         <form id='orderForm' on:submit|preventDefault={handleSubmit}>
             <fieldset>
                 <legend>Shipping</legend>
-                <label>First Name <input type='text' name='fname' id='firstName'></label>
-                <label>Last Name <input type='text' name ='lname' id='lastName'></label>
-                <label>Street <input type='text' name ='street' id='street'></label>
-                <label>City <input type='text' name ='city' id='city'></label>
-                <label>State <input type='text' name ='state' id='state'></label>
-                <label>Zip <input type='text' name ='zip' id='zip'></label>
+                <label>First Name <input type='text' name='fname' id='firstName'required ></label>
+                <label>Last Name <input type='text' name ='lname' id='lastName'required ></label>
+                <label>Street <input type='text' name ='street' id='street'required ></label>
+                <label>City <input type='text' name ='city' id='city'required ></label>
+                <label>State <input type='text' name ='state' id='state'required ></label>
+                <label>Zip <input type='text' name ='zip' id='zip'required ></label>
             </fieldset>
             <br>
             <fieldset>
                 <legend>Payment</legend>
-                <label>Card Number <input type='text' name ='cardNumber' id='cardNumber'></label>
-                <label>Expiration Date <input type='text' name ='expiration' id='expiration'></label>
-                <label>Security Code <input type='text' name ='code' id='securityCode'></label>
+                <label>Card Number <input type='number' name='cardNumber' id='cardNumber' required minlength="16"></label>
+                <label>Expiration Date <input type='text' name ='expiration' id='expiration'required ></label>
+                <label>Security Code <input type='number' name ='code' id='securityCode'required ></label>-
             </fieldset>
             <p id='errorMessage' class='error'></p>
             <fieldset>
