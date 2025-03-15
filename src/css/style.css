@@ -338,7 +338,8 @@ button:active, .button {
 
 /* Start cart list card styles */
 .cart-item-image {
-  padding: 5%;
+  padding: 10%;
+  width: 100%;
 }
 .cart-card {
   display: grid;
@@ -425,4 +426,39 @@ footer {
   display: flex;
   align-items: center;
   gap: 10px; /* Adjust spacing between prices */
+}
+
+.color-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.color-button {
+  padding:0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  background-size: cover;
+  background-position: center;
+  cursor: default;
+}
+.detail-color-button {
+  padding:0;
+  min-width: 50px;
+  max-width: 80px;
+  height: 30px;
+  border: 1px solid #ccc;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+}
+
+.detail-color-button:hover {
+  border: 2px solid black;
+}
+
+.color-button:hover {
+  filter: brightness(100%);
 }

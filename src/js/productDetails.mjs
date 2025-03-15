@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage, renderHeaderFooter } from './utils.mjs';
+import { getLocalStorage, setLocalStorage, renderHeaderFooter, setupColorSelection } from './utils.mjs';
 import { findProductById } from './externalServices.mjs';
 import { cartState } from './components/state.svelte';
 
@@ -22,6 +22,7 @@ function addProductToCart(product) {
     }
 
     setLocalStorage('so-cart', cart);
+    window.scrollTo(0, 0);
 };
   
 export async function productDetails(productId, selector) {
@@ -32,9 +33,10 @@ export async function productDetails(productId, selector) {
         // once we have the product details we can render out the HTML
         let productHTML = productDetailsTemplate(product);
         let container = document.querySelector(selector);
-
+        
         container.insertAdjacentHTML('afterbegin', productHTML);
-
+        setupColorSelection();
+        
         // add a listener to Add to Cart button
         let button = document.querySelector('#addToCart')
         button.addEventListener('click', () => {addProductToCart(product)})
@@ -57,8 +59,26 @@ export async function productDetails(productId, selector) {
     }
 }
 
-function productDetailsTemplate(product){
 
+
+function productDetailsTemplate(product){
+    
+        // Generate color buttons
+        let colorButtonsHTML = '';
+        if (product.Colors && product.Colors.length > 1) {
+            colorButtonsHTML = `
+            <div class="color-buttons">
+                ${product.Colors.map(color => `
+                    <button 
+                        class="detail-color-button" 
+                        title="${color.ColorName}" 
+                        style="background-image: url(${color.ColorChipImageSrc});"
+                        data-image="${color.ColorPreviewImageSrc}"
+                        data-color-name="${color.ColorName}"
+                    ></button>
+                `).join('')}
+            </div>`;
+        }
     return `
     
     <h3 id="productName">${product.Name}</h3>
@@ -84,6 +104,7 @@ function productDetailsTemplate(product){
             <s>$${product.SuggestedRetailPrice}</s>
         </p>
     </div>
+      ${colorButtonsHTML}
     <p class="product__color" id="productColorName">${product.Colors[0].ColorName}</p>
 
     <p class="product__description" id="productDescriptionHtmlSimple">${product.DescriptionHtmlSimple}</p>

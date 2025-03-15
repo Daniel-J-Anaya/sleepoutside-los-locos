@@ -1,7 +1,7 @@
 import MainHeader from './components/MainHeader.svelte';
 import MainFooter from './components/MainFooter.svelte';
+import AlertMessage from './components/AlertMessage.svelte';
 import { mount } from 'svelte';
-import { loadAlerts } from './alert';
 
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
@@ -60,7 +60,6 @@ export function renderHeaderFooter(){
     target: document.querySelector('#main-footer'),
   });
 
-  loadAlerts();
 };
 
 export function getCartCount(){
@@ -79,3 +78,39 @@ export function formDataToJSON(formElement) {
 
   return convertedJSON;
 }
+
+export function setupColorSelection() {
+  const colorButtons = document.querySelectorAll('.detail-color-button');
+  const productImage = document.querySelector('#product-image');
+  const colorNameElement = document.querySelector('#productColorName');
+
+  colorButtons.forEach(button => {
+      button.addEventListener('click', () => {
+          const newImageSrc = button.getAttribute('data-image');
+          const newColorName = button.getAttribute('data-color-name');
+
+          productImage.src = newImageSrc;
+          colorNameElement.textContent = newColorName;
+          // console.log(newColorName);
+      });
+  });
+}
+
+export function alertMessage(message, scroll = true, duration = 3000) {
+  const alert = mount(AlertMessage, {
+    target: document.querySelector('body'),
+    anchor: document.querySelector('main'),
+    props: {
+      message,
+    },
+  });
+  // make sure they see the alert by scrolling to the top of the window
+  if (scroll) window.scrollTo(0, 0);
+
+}
+
+export function removeAllAlerts() {
+  const alerts = document.querySelectorAll('.alert');
+  alerts.forEach((alert) => alert.remove());
+}
+
