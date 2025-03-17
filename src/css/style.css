@@ -98,37 +98,25 @@ header {
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  /* background-color: white;
-  border-radius: 25px;
-  padding: 5px 30px;
-  border: 2px solid #2B4D6A;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  z-index: 1; */ */
-}
 
-.top{
-  /* transform: none; Center it horizontally */
-  /* width: auto;
-  max-height: 40px;
-  margin: 0 auto; */
 }
-
 .searchbar input {
-  /* border: none;
   outline: none;
+  width: 28rem;
   padding: 10px 15px;
   font-size: 16px;
-  border-radius: 25px; */
+  border-radius: 25px;
 }
 
 .searchbar button {
+  padding: 12px;
   background: none;
   border: none;
   cursor: pointer;
   font-size: 18px;
   color: gray;
-  margin-left: 10px;
+  width: auto;
+  display: inline;
 }
 
 .banner {
