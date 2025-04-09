@@ -52,7 +52,7 @@ export function checkLogin() {
     // check out what location contains
     console.log(location);
     // redirect by updating window.location =
-    window.location = `/login/index.html?redirect=${location.pathname}`;
+    window.location = `/login/index.html?redirect=${location.pathname?location.pathname:'/order/index.html'}`;
   } else return token; //if they are logged in then just return the token.
 }
 
