@@ -1,11 +1,14 @@
 <script>
   import ProductSummary from "./ProductSummary.svelte";
   import { getProductsByCategory } from "../externalServices.mjs";
+  import SearchBar from "./SearchBar.svelte";
 
   let { category } = $props();
 
   let promise = getProductsByCategory(category);
 </script>
+
+<div><SearchBar /></div>
 
 <h2>Top Products</h2>
 {#await promise}

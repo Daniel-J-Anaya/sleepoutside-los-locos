@@ -174,6 +174,9 @@ button:active, .button {
 .divider {
   border-bottom: 2px solid var(--primary-color);
 }
+.divider p{
+  padding-left: 1em;
+}
 /* End utility classes */
 
 /* Cart icon styles */
